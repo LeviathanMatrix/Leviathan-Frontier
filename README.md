@@ -181,6 +181,19 @@ For this hackathon, the goal is to ship a clearer public product surface around 
 - more judge-friendly demonstration of how attribution and AEP work together
 - continued hardening of the decision stack as infrastructure, not a one-off demo
 
+## Week 1 Update
+
+Week 1 focused on moving AEP from a simple execution gate toward a true constitutional execution layer.
+
+- added a delegated execution model with `principal`, `delegate`, `role`, scoped actions, scoped assets, scoped programs, and bounded validity windows
+- connected AEP to a registry-backed delegation grant model so permissions can be versioned, reused, and governed instead of being embedded ad hoc in each request
+- introduced configurable enforcement modes so delegation checks can run in observe mode or hard-stop execution in enforce mode
+- landed merged budget enforcement so effective execution capacity is bounded by policy, principal, and delegate limits together
+- bound tickets to delegation capability state via `capability_hash` checks to prevent mismatched execution rights
+- upgraded review into a stronger governance and accountability step, not just a post-execution status check
+
+See [docs/week-1-update.md](docs/week-1-update.md) for the full update.
+
 ## Foundation Built During Colosseum Eternal
 
 Leviathan is not starting from zero.
@@ -199,6 +212,15 @@ During Colosseum Eternal, we built and iterated the foundation that this hackath
 That Eternal work is the foundation.
 
 This hackathon repo is where that foundation becomes a sharper, cleaner, more explicit startup product.
+
+## Repository Scope
+
+This public repository is the hackathon-facing product and progress surface.
+
+- public here: positioning, architecture, weekly updates, product framing, and future demo materials
+- not public here: sealed production logic, proprietary attribution internals, non-public connectors, and private execution controls
+
+The current goal is to make the product direction and progress legible without exposing the internal implementation that will later power the demo.
 
 ## References
 
