@@ -181,18 +181,18 @@ For this hackathon, the goal is to ship a clearer public product surface around 
 - more judge-friendly demonstration of how attribution and AEP work together
 - continued hardening of the decision stack as infrastructure, not a one-off demo
 
-## Week 1 Update
+## Latest Update
 
-Week 1 focused on moving AEP from a simple execution gate toward a true constitutional execution layer.
+The latest AEP update pushes Leviathan beyond delegated execution checks and into a stronger model of capital-bound execution control.
 
-- added a delegated execution model with `principal`, `delegate`, `role`, scoped actions, scoped assets, scoped programs, and bounded validity windows
-- connected AEP to a registry-backed delegation grant model so permissions can be versioned, reused, and governed instead of being embedded ad hoc in each request
-- introduced configurable enforcement modes so delegation checks can run in observe mode or hard-stop execution in enforce mode
-- landed merged budget enforcement so effective execution capacity is bounded by policy, principal, and delegate limits together
-- bound tickets to delegation capability state via `capability_hash` checks to prevent mismatched execution rights
-- upgraded review into a stronger governance and accountability step, not just a post-execution status check
+- introduced **Capital Capsules** as bounded execution objects for delegated actions
+- turned execution authority into something temporary, scoped, revocable, and review-settleable rather than a flat yes-or-no approval
+- added lifecycle-aware execution control so a bounded execution object can be issued, consumed, revoked, and settled across the action path
+- strengthened pre-execution legitimacy by rechecking whether delegated authority still holds at the moment execution is attempted
+- moved review closer to execution settlement, not just retrospective status inspection
+- extended the public product story from constitutional execution toward accountable machine capital control
 
-See [docs/week-1-update.md](docs/week-1-update.md) for the full update.
+See [docs/current-update-capital-capsule.md](docs/current-update-capital-capsule.md) for the latest update and [docs/week-1-update.md](docs/week-1-update.md) for the earlier delegation milestone.
 
 ## Foundation Built During Colosseum Eternal
 
