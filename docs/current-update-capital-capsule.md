@@ -78,6 +78,21 @@ It is now closer to asking:
 
 That is a stronger foundation for future machine finance on Solana than a simple policy gate alone.
 
+```mermaid
+flowchart LR
+    A["Agent Trade Request"] --> B["Attribution Engine"]
+    B --> C["Risk + Evidence Verdict"]
+    C --> D["AEP Constitutional Gate"]
+    D --> E["Capital Capsule Issued"]
+    E --> F["Execute Under Bounds"]
+    F --> G["Receipt + Ledger Trail"]
+    G --> H["Review + Settlement"]
+
+    D -. deny .-> X["Blocked Before Execution"]
+    E -. revoke .-> Y["Capsule Revoked"]
+
+```
+
 ## Public Boundary
 
 This repository continues to document the public product and governance surface of the hackathon work.
