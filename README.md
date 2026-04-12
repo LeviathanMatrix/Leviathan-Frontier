@@ -194,6 +194,18 @@ The latest AEP update pushes Leviathan beyond delegated execution checks and int
 
 See [docs/current-update-capital-capsule.md](docs/current-update-capital-capsule.md) for the latest update and [docs/week-1-update.md](docs/week-1-update.md) for the earlier delegation milestone.
 
+## Week 2 Update
+
+Week 2 focused on turning AEP into a cleaner runtime-facing infrastructure layer instead of leaving it as a prompt-shaped execution demo.
+
+- introduced a unified intake layer so plain-language requests and structured requests now resolve into the same governed execution path
+- pushed Capital Capsules from a concept/demo surface into the real execution lifecycle with issuance, consumption, review, and settlement on live case paths
+- expanded governed action coverage beyond trade into bridge so machine execution boundaries can cover more than one capital movement primitive
+- hardened the runtime story so agent frameworks can route into AEP more consistently instead of depending on brittle one-off phrasing
+- validated the new surface through local regression and live runtime checks across trade, bridge, and delegated capsule flows
+
+See [docs/week-2-update.md](docs/week-2-update.md) for the full update.
+
 ## Foundation Built During Colosseum Eternal
 
 Leviathan is not starting from zero.
