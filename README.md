@@ -206,6 +206,17 @@ Week 2 focused on turning AEP into a cleaner runtime-facing infrastructure layer
 
 See [docs/week-2-update.md](docs/week-2-update.md) for the full update.
 
+## Runtime Access Alpha
+
+We now have a controlled external runtime path for judges, collaborators, and selected testers.
+
+- external users run a local runtime shell instead of receiving Leviathan source code
+- the protected AEP, attribution, capsule, and audit logic stay behind the Leviathan decision boundary
+- this creates a real hands-on product experience without publishing the internal execution-governance core
+- the current public runtime path uses a lighter attribution path by default while the deeper attribution engine continues to be optimized
+
+See [docs/runtime-access-alpha.md](docs/runtime-access-alpha.md) for the external runtime access shape.
+
 ## Foundation Built During Colosseum Eternal
 
 Leviathan is not starting from zero.
