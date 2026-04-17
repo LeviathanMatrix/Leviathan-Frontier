@@ -16,18 +16,23 @@ Reviewers provide their own model API key locally.
 
 ## Runtime Package
 
-The current alpha runtime package is available in this repository:
-
-- [runtime image package](../runtime-assets/leviathan-alpha-runtime-image-20260416.tar.gz)
-- [runtime directory template](../runtime-assets/leviathan-alpha-runtime-20260416.tar.gz)
-
-Download both files, then load the image locally:
+The recommended alpha runtime path is direct pull from GHCR:
 
 ```bash
-docker load -i leviathan-alpha-runtime-image-20260416.tar.gz
+docker pull ghcr.io/leviathanmatrix/leviathan-alpha-runtime:latest
 ```
 
-Then unpack the runtime directory:
+Version-pinned tag:
+
+```bash
+docker pull ghcr.io/leviathanmatrix/leviathan-alpha-runtime:20260417
+```
+
+The runtime directory template remains in this repository:
+
+- [runtime directory template](../runtime-assets/leviathan-alpha-runtime-20260416.tar.gz)
+
+Unpack the runtime directory:
 
 ```bash
 tar -xzf leviathan-alpha-runtime-20260416.tar.gz
