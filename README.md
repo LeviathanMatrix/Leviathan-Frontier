@@ -215,7 +215,7 @@ We now have a controlled external runtime path for judges, collaborators, and se
 - this creates a real hands-on product experience without publishing the internal execution-governance core
 - the current public runtime path uses a lighter attribution path by default while the deeper attribution engine continues to be optimized
 
-See [docs/runtime-access-alpha.md](docs/runtime-access-alpha.md) for the external runtime access shape.
+See [docs/runtime-access-alpha.md](docs/runtime-access-alpha.md) for the external runtime access shape and [docs/judge-runtime-access.md](docs/judge-runtime-access.md) for the reviewer-facing trial flow.
 
 ## Foundation Built During Colosseum Eternal
 

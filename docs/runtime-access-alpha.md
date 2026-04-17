@@ -61,6 +61,22 @@ The current external tester flow is:
    - fetch presentable cases
    - export report bundles
 
+
+## Judge Access
+
+Judges and selected reviewers can request controlled runtime access from the Leviathan team.
+
+Access includes:
+
+- a Leviathan API base URL
+- a short-lived access token
+- runtime image or pull instructions
+- local configuration guidance
+
+Reviewers provide their own model API key locally.
+
+See [judge-runtime-access.md](judge-runtime-access.md) for the reviewer-facing access flow.
+
 ## Runtime Boundary
 
 The runtime shell is intentionally narrow.
