@@ -1,6 +1,6 @@
 # LeviathanMatrix AEP Open Core
 
-**A Solana-native Agent Execution Policy kernel for Web4 capital actions.**
+**Open execution-control infrastructure for Web4 agents: policy-bound authorization, Execution Passes, Capital Capsules, receipts, and reviewable actions.**
 
 LeviathanMatrix AEP Open Core is an open-source execution-control layer for autonomous agents. It turns an agent request such as `buy 1 USDC of SOL` into a governed execution lifecycle:
 
@@ -13,6 +13,44 @@ The core claim is simple:
 > In Web4, an agent should not be able to move capital just because it can produce a prompt, hold a key, or call a tool. It should need a policy-bound, time-limited, cryptographically anchored execution object.
 
 This repository now contains the runnable AEP Open Core implementation.
+
+## 中文介绍
+
+**LeviathanMatrix AEP Open Core 是面向 Web4 Agent 的开源执行控制基础设施。**
+
+它解决的不是“让 AI Agent 会调用工具”这个低层问题，而是更关键的问题：
+
+```text
+当 Agent 准备触碰资金、资产、权限或链上动作时，
+谁给它授权？
+授权范围有多大？
+额度是多少？
+有效期多久？
+执行前后是否一致？
+失败或越界时能不能被拦住并复盘？
+```
+
+AEP 把一句普通的 Agent 请求，例如 `buy 1 USDC of SOL`，转成一条可治理的执行生命周期：
+
+```text
+请求 -> 结构化意图 -> 策略判断 -> Execution Pass -> Capital Capsule -> 受控执行 -> Receipt -> Review -> 可导出的执行声明
+```
+
+一句话讲清楚：
+
+> AEP 不是交易机器人，也不是提示词安全层。它是 Agent 在执行高价值动作之前必须经过的执行控制内核。
+
+它让 Agent 的动作变成：
+
+- 有策略边界；
+- 有授权对象；
+- 有额度限制；
+- 有时间限制；
+- 有执行回执；
+- 有执行后审核；
+- 可以被开发者复现和检查。
+
+Solana 是当前仓库的第一演示环境，因为它速度快、费用低、适合机器级执行流。但 AEP 的核心设计不是只服务单条链，而是服务 Web4 Agent 的执行边界。
 
 ## Why AEP Exists
 
