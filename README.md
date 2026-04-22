@@ -153,6 +153,7 @@ See:
 - [Installation](docs/installation.md)
 - [Developer Usage](docs/developer-usage.md)
 - [Features And Configuration](docs/features-and-configuration.md)
+- [Synthetic Demo Cases](docs/synthetic-demo-cases.md)
 - [Architecture](docs/aep-open-core-architecture.md)
 - [Algorithm Notes](docs/algorithm-notes.md)
 - [Design Rationale](docs/design-rationale.md)
@@ -572,3 +573,13 @@ The product value is not that an agent can make a fake paper trade. The value is
 - portable across runtimes
 
 That is the execution control layer Web4 agents need before they can be trusted with capital.
+
+## License
+
+This repository is released under the LeviathanMatrix AEP Open Core
+Non-Commercial License v1.0.
+
+Personal, educational, research, hackathon, evaluation, and internal
+non-commercial use are allowed.
+
+Commercial use requires permission from LeviathanMatrix. See [LICENSE](LICENSE).
