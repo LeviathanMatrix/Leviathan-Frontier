@@ -14,6 +14,22 @@ The core claim is simple:
 
 This repository now contains the runnable AEP Open Core implementation.
 
+## AEP Visual Story
+
+Without an execution-control layer, an agent can receive broad authority, lose
+control during execution, and expose sensitive authority surfaces.
+
+| Permission without boundaries | Unbounded token activity | Key and authority leakage |
+| --- | --- | --- |
+| ![A cute agent receives broad trading permission without an execution boundary](docs/assets/aep-visual-story/without-aep-permission.png) | ![A cute agent panics while tokens and approvals scatter during uncontrolled trading](docs/assets/aep-visual-story/without-aep-trading-chaos.png) | ![A cute agent accidentally exposes a key while authority and token cards scatter](docs/assets/aep-visual-story/without-aep-key-leak.png) |
+
+With AEP, the same agent receives bounded authority before execution and leaves
+behind a reviewable lifecycle after execution.
+
+| Execution Pass | Capital Capsule | Receipt and Review |
+| --- | --- | --- |
+| ![AEP issues a bounded execution pass before the agent can act](docs/assets/aep-visual-story/with-aep-execution-pass.png) | ![AEP wraps approved capital inside a transparent capital capsule](docs/assets/aep-visual-story/with-aep-capital-capsule.png) | ![AEP produces a receipt and review trail after controlled execution](docs/assets/aep-visual-story/with-aep-receipt-review.png) |
+
 ## 中文介绍
 
 **LeviathanMatrix AEP Open Core 是面向 Web4 Agent 的开源执行控制基础设施。**
