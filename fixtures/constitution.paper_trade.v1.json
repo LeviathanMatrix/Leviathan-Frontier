@@ -1,0 +1,76 @@
+{
+  "schema_version": "constitution.v1",
+  "constitution_id": "const-paper-trade-v1-core",
+  "agent_id": "aep:solana:agent-alpha",
+  "version": 1,
+  "status": "active",
+  "effective_at": 1774108800,
+  "metadata_uri": "local://aep/constitution/paper-trade/v1/core",
+  "issuance": {
+    "mode": "enforce",
+    "require_valid_issuance": true,
+    "max_ttl_seconds": 3600,
+    "default_ttl_seconds": 900
+  },
+  "hard_constraints": {
+    "allowed_chains": ["solana"],
+    "allowed_assets": ["USDC", "SOL", "BTC", "ETH", "BONK", "HELP"],
+    "forbidden_assets": ["SCAM", "RUG"],
+    "enforce_asset_lists": false,
+    "allowed_programs": [
+      "paper.virtual.exchange",
+      "paper.virtual.payment",
+      "paper.virtual.approve",
+      "paper.virtual.contract_call",
+      "paper.virtual.bridge",
+      "aep.controlled.devnet.swap_proxy",
+      "aep.controlled.devnet.transfer"
+    ],
+    "forbidden_programs": [
+      "paper.virtual.forbidden"
+    ],
+    "allowed_counterparties": [],
+    "forbidden_counterparties": [
+      "paper-scam-pool-01"
+    ],
+    "max_notional_per_tx_usd": 500,
+    "max_daily_notional_usd": 10000,
+    "max_slippage_bps": 150,
+    "max_bridge_exposure_usd": 500,
+    "max_leverage": 1,
+    "require_counterparty_score_min": 55,
+    "simulation_required": true
+  },
+  "risk_parameters": {
+    "base_bond_bps": 500,
+    "risk_multiplier": 1,
+    "base_bond_review_window_secs": 900,
+    "evidence_min_score": 60,
+    "decision_thresholds": {
+      "allow_light_max": 35,
+      "allow_standard_max": 65,
+      "allow_heavy_max": 84.99,
+      "deny_min": 85
+    },
+    "advisory_mapping": {
+      "allow_floor_score": 0,
+      "review_floor_score": 50,
+      "block_floor_score": 85
+    },
+    "review_bond_bps": 200,
+    "min_review_bond_usd": 20,
+    "frivolous_penalty_ratio": 0.25
+  },
+  "governance_parameters": {
+    "upgrade_delay_secs": 86400,
+    "emergency_guardian_enabled": true,
+    "validator_quorum": 3,
+    "allowed_upgraders": [
+      "dao-multisig-01"
+    ],
+    "guardian_accounts": [
+      "guardian-01",
+      "guardian-02"
+    ]
+  }
+}

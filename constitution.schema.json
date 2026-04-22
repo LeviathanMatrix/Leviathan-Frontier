@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "constitution.schema.json",
+  "title": "AEP Constitution v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "constitution_id",
+    "version",
+    "status",
+    "hard_constraints",
+    "risk_parameters",
+    "governance_parameters"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "constitution.v1"
+    },
+    "constitution_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "proposed", "timelocked", "active", "retired"]
+    },
+    "effective_at": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "supersedes": {
+      "type": "string"
+    },
+    "metadata_uri": {
+      "type": "string"
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enforce_mode": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["observe", "enforce", "strict", "block"]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "default": { "type": "string" },
+                "mode": { "type": "string" },
+                "preset": {
+                  "type": "string",
+                  "enum": ["strict_block", "hybrid_warn", "observe_only"]
+                },
+                "profile": {
+                  "type": "string",
+                  "enum": ["strict_block", "hybrid_warn", "observe_only"]
+                },
+                "by_action": { "type": "object", "additionalProperties": { "type": "string" } },
+                "by_risk_band": { "type": "object", "additionalProperties": { "type": "string" } },
+                "reason_actions": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": ["block", "warn", "ignore"]
+                  }
+                },
+                "block_reasons": { "type": "array", "items": { "type": "string" } },
+                "warn_reasons": { "type": "array", "items": { "type": "string" } },
+                "ignore_reasons": { "type": "array", "items": { "type": "string" } },
+                "require_delegation_on_enforce": { "type": "boolean" },
+                "require_delegation": { "type": "boolean" }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "delegation_enforce_mode": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["observe", "enforce", "strict", "block"]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "default": { "type": "string" },
+            "mode": { "type": "string" },
+            "preset": {
+              "type": "string",
+              "enum": ["strict_block", "hybrid_warn", "observe_only"]
+            },
+            "profile": {
+              "type": "string",
+              "enum": ["strict_block", "hybrid_warn", "observe_only"]
+            },
+            "by_action": { "type": "object", "additionalProperties": { "type": "string" } },
+            "by_risk_band": { "type": "object", "additionalProperties": { "type": "string" } },
+            "reason_actions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "enum": ["block", "warn", "ignore"]
+              }
+            },
+            "block_reasons": { "type": "array", "items": { "type": "string" } },
+            "warn_reasons": { "type": "array", "items": { "type": "string" } },
+            "ignore_reasons": { "type": "array", "items": { "type": "string" } },
+            "require_delegation_on_enforce": { "type": "boolean" },
+            "require_delegation": { "type": "boolean" }
+          }
+        }
+      ]
+    },
+    "issuance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["observe", "warn", "enforce"]
+        },
+        "require_valid_issuance": {
+          "type": "boolean"
+        },
+        "max_ttl_seconds": {
+          "type": "integer",
+          "minimum": 60
+        },
+        "default_ttl_seconds": {
+          "type": "integer",
+          "minimum": 60
+        }
+      }
+    },
+    "hard_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_chains",
+        "allowed_assets",
+        "allowed_programs",
+        "max_notional_per_tx_usd",
+        "max_daily_notional_usd",
+        "max_slippage_bps",
+        "max_bridge_exposure_usd",
+        "max_leverage",
+        "require_counterparty_score_min"
+      ],
+      "properties": {
+        "allowed_chains": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "allowed_assets": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "forbidden_assets": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "enforce_asset_lists": {
+          "type": "boolean",
+          "default": false
+        },
+        "allowed_programs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "forbidden_programs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "allowed_counterparties": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "forbidden_counterparties": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "max_notional_per_tx_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_daily_notional_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_slippage_bps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_bridge_exposure_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_leverage": {
+          "type": "number",
+          "minimum": 0
+        },
+        "require_counterparty_score_min": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "simulation_required": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "risk_parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "base_bond_bps",
+        "risk_multiplier",
+        "base_bond_review_window_secs",
+        "evidence_min_score",
+        "decision_thresholds",
+        "advisory_mapping"
+      ],
+      "properties": {
+        "base_bond_bps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "risk_multiplier": {
+          "type": "number",
+          "minimum": 0
+        },
+        "base_bond_review_window_secs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidence_min_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "decision_thresholds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "allow_light_max",
+            "allow_standard_max",
+            "allow_heavy_max",
+            "deny_min"
+          ],
+          "properties": {
+            "allow_light_max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "allow_standard_max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "allow_heavy_max": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "deny_min": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            }
+          }
+        },
+        "advisory_mapping": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allow_floor_score", "review_floor_score", "block_floor_score"],
+          "properties": {
+            "allow_floor_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "review_floor_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "block_floor_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            }
+          }
+        },
+        "review_bond_bps": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "min_review_bond_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "frivolous_penalty_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "governance_parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "upgrade_delay_secs",
+        "emergency_guardian_enabled",
+        "validator_quorum"
+      ],
+      "properties": {
+        "upgrade_delay_secs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "emergency_guardian_enabled": {
+          "type": "boolean"
+        },
+        "validator_quorum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allowed_upgraders": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "guardian_accounts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        }
+      }
+    }
+  }
+}

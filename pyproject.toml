@@ -1,0 +1,9 @@
+[project]
+name = "leviathanmatrix-aep-open-core"
+version = "0.1.0"
+description = "LeviathanMatrix AEP Open Core execution control kernel for AI agents"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

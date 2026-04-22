@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "risk_input.schema.json",
+  "title": "AEP Open Core Risk Input v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "input_id",
+    "agent_id",
+    "intent_id",
+    "generated_at",
+    "source_systems",
+    "mcp_scores",
+    "aep_context"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "risk_input.v1"
+    },
+    "input_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_systems": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sourceSystem" },
+      "minItems": 1
+    },
+    "mcp_scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "r1_control",
+        "r2_funding",
+        "r3_convergence",
+        "r4_terminal",
+        "r5_history",
+        "r6_lp_behavior",
+        "r7_anomaly",
+        "x_cross_signal",
+        "token_score",
+        "advisory_decision"
+      ],
+      "properties": {
+        "r1_control": { "$ref": "#/$defs/riskScore" },
+        "r2_funding": { "$ref": "#/$defs/riskScore" },
+        "r3_convergence": { "$ref": "#/$defs/riskScore" },
+        "r4_terminal": { "$ref": "#/$defs/riskScore" },
+        "r5_history": { "$ref": "#/$defs/riskScore" },
+        "r6_lp_behavior": { "$ref": "#/$defs/riskScore" },
+        "r7_anomaly": { "$ref": "#/$defs/riskScore" },
+        "x_cross_signal": { "$ref": "#/$defs/riskScore" },
+        "token_score": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["permission", "rug", "history", "weighted_score", "grade"],
+          "properties": {
+            "permission": { "$ref": "#/$defs/riskScore" },
+            "rug": { "$ref": "#/$defs/riskScore" },
+            "history": { "$ref": "#/$defs/riskScore" },
+            "consistency_adjustment": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            },
+            "weighted_score": { "$ref": "#/$defs/riskScore" },
+            "grade": {
+              "type": "string",
+              "enum": ["A", "B", "C", "D", "Rug"]
+            }
+          }
+        },
+        "advisory_decision": {
+          "type": "string",
+          "enum": ["ALLOW", "REVIEW", "BLOCK"]
+        },
+        "drift_state": {
+          "type": "string",
+          "enum": ["stable", "drifting", "outlier", "unknown"]
+        },
+        "decision_confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "aep_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "counterparty_risk",
+        "execution_complexity_risk",
+        "market_risk",
+        "anomaly_risk",
+        "evidence_gap_risk",
+        "governance_surface_risk",
+        "agent_reputation_bonus",
+        "treasury_health_bonus"
+      ],
+      "properties": {
+        "counterparty_risk": { "$ref": "#/$defs/riskScore" },
+        "execution_complexity_risk": { "$ref": "#/$defs/riskScore" },
+        "market_risk": { "$ref": "#/$defs/riskScore" },
+        "anomaly_risk": { "$ref": "#/$defs/riskScore" },
+        "evidence_gap_risk": { "$ref": "#/$defs/riskScore" },
+        "governance_surface_risk": { "$ref": "#/$defs/riskScore" },
+        "agent_reputation_bonus": { "$ref": "#/$defs/riskScore" },
+        "treasury_health_bonus": { "$ref": "#/$defs/riskScore" }
+      }
+    },
+    "derived_values": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mcp_structural_risk": { "$ref": "#/$defs/riskScore" },
+        "risk_score_pre_advisory": { "$ref": "#/$defs/riskScore" },
+        "risk_score_post_advisory": { "$ref": "#/$defs/riskScore" }
+      }
+    },
+    "open_risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "open_risk_score": { "$ref": "#/$defs/riskScore" },
+        "policy_risk_score": { "$ref": "#/$defs/riskScore" },
+        "uncertainty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "evidence_coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "volatility_proxy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "execution_mode": {
+          "type": "string",
+          "enum": ["paper", "devnet", "mainnet", "mainnet-beta"]
+        },
+        "review_intensity": {
+          "type": "string",
+          "enum": ["standard", "enhanced", "strict"]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "riskScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "sourceSystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["mcp", "indexer", "simulator", "scorer", "manual"]
+        }
+      }
+    }
+  }
+}

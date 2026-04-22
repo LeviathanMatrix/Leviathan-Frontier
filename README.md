@@ -1,253 +1,574 @@
-# Leviathan Frontier
+# LeviathanMatrix AEP Open Core
 
-**Solana-native constitutional execution and pre-trade decision infrastructure for autonomous agents and human operators.**
+**A Solana-native Agent Execution Policy kernel for Web4 capital actions.**
 
-Leviathan is being built for a simple shift: once agents begin screening assets, requesting capital, and executing actions directly, crypto stops being only a wallet problem and becomes a decision, identity, and liability problem.
+LeviathanMatrix AEP Open Core is an open-source execution-control layer for autonomous agents. It turns an agent request such as `buy 1 USDC of SOL` into a governed execution lifecycle:
 
-This project combines three layers into a single execution stack:
-
-- **Attribution Core**: turns messy on-chain behavior into usable risk, control, and evidence context
-- **Leviathan MCP**: exposes machine-consumable `ALLOW / REVIEW / BLOCK` decisions instead of raw noise
-- **AEP (Agent Execution Policy)**: binds execution to policy, authority, and liability boundaries before capital can move
-
-Leviathan is not a token checker, not an execution bot, and not a dashboard-first product. It is infrastructure for deciding whether an agent action should exist on-chain at all, under what policy, and with what accountability.
-
-## The Web4 Execution Gap
-
-The current crypto stack was designed for human wallets, human approvals, and human responsibility. That model degrades once autonomous systems begin acting on capital.
-
-### 1. Agent analysis is too expensive
-
-Today, a serious agent often has to ingest raw on-chain data, inspect wallet behavior, reason across multiple protocols, and interpret fragmented signals just to answer one basic question:
-
-**Should I touch this asset at all?**
-
-That creates real failure modes:
-
-- too much latency before execution
-- too much token and compute cost spent on repeated analysis
-- too much overhead relative to the profit opportunity
-- too much chance of paying more for analysis than the decision is worth
-
-An agent that must repeatedly burn context, token budget, and engineering complexity before every action is leaking value before it even trades.
-
-### 2. Identity is not enough without execution policy
-
-On-chain identity can tell you who owns a wallet or who signed a request. It does **not** tell you whether the requested action should be allowed.
-
-Autonomous systems need more than identity:
-
-- what role is this agent acting under
-- what asset classes is it allowed to touch
-- what actions require escalation
-- what should be blocked even if the strategy wants to proceed
-- what authority survives role changes, operator changes, or delegation
-
-Without explicit execution policy, identity becomes a weak shell around uncontrolled automation.
-
-### 3. Most tools stop at data, not decisions
-
-Most crypto tools still output:
-
-- traces
-- dashboards
-- alerts
-- disconnected scores
-- opaque heuristics
-
-That is not enough for agents.
-
-Agents need a machine-usable decision object that can be routed directly into policy and execution.
-
-### 4. Accountability is still broken
-
-When an automated system acts on capital, the same questions appear every time:
-
-- why did this happen
-- what evidence supported it
-- which policy boundary allowed it
-- who is responsible if it was wrong
-
-Most stacks cannot answer those questions cleanly. They produce fragments, not an execution-grade liability trail.
-
-## Why This Market Matters
-
-This is not a niche interface problem. It sits inside the broader shift from software assistance to autonomous software action.
-
-- McKinsey estimates generative AI could create **$2.6T-$4.4T** in annual economic value across industries when deployed at scale.
-- Solana is already explicitly positioning for **agentic payments** and machine-to-machine economic flows.
-- Solana's x402 ecosystem page highlights **37M+ transactions**, **20K+ buyers and sellers**, and **70% monthly volume on Solana** in its current x402 ecosystem framing.
-- Solana's agentic payments documentation now treats machine-native payment negotiation as a first-class internet primitive rather than a thought experiment.
-
-As agents begin to pay for data, request capital, evaluate routes, screen assets, and execute actions continuously, the market for **decision infrastructure, execution policy, and machine accountability** grows with them.
-
-Leviathan is designed for that layer.
-
-## Why Solana
-
-Solana is the right execution environment for this stack because the constraints are real there:
-
-- low fees make repeated machine calls economically viable
-- fast finality compresses the time window for bad decisions
-- high throughput makes agent-native workflows realistic instead of theoretical
-- native support for agentic payments and x402 makes machine commerce economically credible
-
-A slow chain can tolerate slow judgment.
-
-Solana cannot.
-
-If capital moves quickly, decision and policy infrastructure must also move quickly.
-
-## What Leviathan Does
-
-### Attribution Core
-
-Leviathan's attribution layer compresses raw on-chain complexity into a usable decision surface:
-
-- funding provenance
-- control surface exposure
-- permission posture
-- liquidity structure
-- issuer and recurrence context
-- evidence packaging for operator and machine review
-
-This matters because agents should not have to reverse-engineer every token from scratch every time they evaluate a possible action.
-
-### Leviathan MCP
-
-Leviathan MCP exposes decisions in a form agents can actually use:
-
-- `ALLOW`
-- `REVIEW`
-- `BLOCK`
-
-with confidence and evidence context.
-
-The point is simple:
-
-**agents should consume decisions, not drown in analytics.**
-
-### AEP
-
-AEP is the constitutional execution layer.
-
-Its role is not to optimize gas or routing. Its role is to govern whether an action is legitimate to execute under policy at all.
-
-AEP is designed to enforce:
-
-- explicit authority boundaries
-- role-aware execution limits
-- no ticket, no execution
-- liability-aware action control
-- accountable case history around every major action
-
-This is how autonomous execution becomes governable instead of merely fast.
-
-## High-Level Flow
-
-```mermaid
-flowchart LR
-    A["Asset / Route / Payment Request"] --> B["Leviathan Attribution Core"]
-    B --> C["Risk Compression Layer"]
-    C --> D["Leviathan MCP Decision"]
-    D --> E["AEP Constitutional Gate"]
-    E --> F["Execution Ticket"]
-    F --> G["Bounded Agent or Operator Execution"]
-    G --> H["Liability Trail and Review State"]
+```text
+request -> structured intent -> policy decision -> execution pass -> capital capsule -> bounded execution -> receipt -> review -> accountable claim
 ```
 
-## Why This Is Infrastructure
+The core claim is simple:
 
-Leviathan does not sit at the cosmetic layer.
+> In Web4, an agent should not be able to move capital just because it can produce a prompt, hold a key, or call a tool. It should need a policy-bound, time-limited, cryptographically anchored execution object.
 
-It sits where machine actions become legitimate, constrained, and reviewable.
+This repository now contains the runnable AEP Open Core implementation.
 
-That makes it useful for:
+## Why AEP Exists
 
-- agent trading systems
-- machine-assisted diligence
-- token screening before listing or allocation
-- internal operator review
-- controlled execution in high-speed markets
-- future machine-to-machine finance on Solana
+Crypto infrastructure was designed around human wallets. Web4 pushes execution into agent systems that can read markets, request actions, operate continuously, and touch capital at machine speed.
 
-## Hackathon Direction
+That breaks the old model.
 
-For this hackathon, the goal is to ship a clearer public product surface around the Leviathan stack:
+Human-wallet UX asks:
 
-- tighter AEP framing for constitutional execution
-- clearer machine-facing decision contracts
-- stronger public-facing product narrative
-- more judge-friendly demonstration of how attribution and AEP work together
-- continued hardening of the decision stack as infrastructure, not a one-off demo
+```text
+Did the user click approve?
+```
 
-## Latest Update
+Agent execution needs to ask:
 
-The latest AEP update pushes Leviathan beyond delegated execution checks and into a stronger model of capital-bound execution control.
+```text
+Who is the agent acting for?
+What role is it using?
+What action is it allowed to perform?
+What is the max notional?
+Which program and network are allowed?
+How long is the authority valid?
+Was the execution still inside the original capability?
+Can the result be reviewed without trusting the prompt?
+```
 
-- introduced **Capital Capsules** as bounded execution objects for delegated actions
-- turned execution authority into something temporary, scoped, revocable, and review-settleable rather than a flat yes-or-no approval
-- added lifecycle-aware execution control so a bounded execution object can be issued, consumed, revoked, and settled across the action path
-- strengthened pre-execution legitimacy by rechecking whether delegated authority still holds at the moment execution is attempted
-- moved review closer to execution settlement, not just retrospective status inspection
-- extended the public product story from constitutional execution toward accountable machine capital control
+AEP is the missing execution boundary between agent reasoning and capital movement.
 
-See [docs/current-update-capital-capsule.md](docs/current-update-capital-capsule.md) for the latest update and [docs/week-1-update.md](docs/week-1-update.md) for the earlier delegation milestone.
+## What Makes It Different
 
-## Week 2 Update
+Most agent demos connect a model directly to a tool. That is fast, but it is not governable.
 
-Week 2 focused on turning AEP into a cleaner runtime-facing infrastructure layer instead of leaving it as a prompt-shaped execution demo.
+AEP inserts a deterministic control plane before execution:
 
-- introduced a unified intake layer so plain-language requests and structured requests now resolve into the same governed execution path
-- pushed Capital Capsules from a concept/demo surface into the real execution lifecycle with issuance, consumption, review, and settlement on live case paths
-- expanded governed action coverage beyond trade into bridge so machine execution boundaries can cover more than one capital movement primitive
-- hardened the runtime story so agent frameworks can route into AEP more consistently instead of depending on brittle one-off phrasing
-- validated the new surface through local regression and live runtime checks across trade, bridge, and delegated capsule flows
+- natural-language and structured requests compile into one normalized action model
+- policy rules are evaluated against a constitution document
+- risk inputs are schema-validated and machine-readable
+- allowed actions receive an Execution Pass
+- capital movement is wrapped in a Capital Capsule
+- execution is rejected if the pass or capsule no longer matches the request
+- receipts and reviews create an accountable lifecycle around the action
 
-See [docs/week-2-update.md](docs/week-2-update.md) for the full update.
-
-## Runtime Access Alpha
-
-We now have a controlled external runtime path for judges, collaborators, and selected testers.
-
-- external users run a local runtime shell instead of receiving Leviathan source code
-- the protected AEP, attribution, capsule, and audit logic stay behind the Leviathan decision boundary
-- this creates a real hands-on product experience without publishing the internal execution-governance core
-- the current public runtime path uses a lighter attribution path by default while the deeper attribution engine continues to be optimized
-
-See [docs/runtime-access-alpha.md](docs/runtime-access-alpha.md) for the external runtime access shape and [docs/judge-runtime-access.md](docs/judge-runtime-access.md) for the reviewer-facing trial flow.
-
-## Foundation Built During Colosseum Eternal
-
-Leviathan is not starting from zero.
-
-During Colosseum Eternal, we built and iterated the foundation that this hackathon version stands on:
-
-- multi-surface attribution for funding, control, permissions, liquidity, and recurrence
-- evaluator-facing `ALLOW / REVIEW / BLOCK` decision outputs
-- public and private reporting paths
-- MCP-facing decision delivery layer
-- AEP framing for constitutional execution and liability-aware action control
-- case review and decision workflow concepts
-- graph and evidence presentation layers
-- repeated live testing against real Solana assets and operator-facing review flows
-
-That Eternal work is the foundation.
-
-This hackathon repo is where that foundation becomes a sharper, cleaner, more explicit startup product.
+This is not a prompt wrapper. It is an execution kernel.
 
 ## Repository Scope
 
-This public repository is the hackathon-facing product and progress surface.
+This repository includes the open AEP implementation:
 
-- public here: positioning, architecture, weekly updates, product framing, and future demo materials
-- not public here: sealed production logic, proprietary attribution internals, non-public connectors, and private execution controls
+- policy and constitution engine
+- intake compiler
+- delegation grant resolver
+- Execution Pass issuance
+- Capital Capsule lifecycle
+- bounded paper execution adapter
+- receipt and review pipeline
+- local accountability hash chain
+- CLI and examples
+- schemas, fixtures, and tests
 
-The current goal is to make the product direction and progress legible without exposing the internal implementation that will later power the demo.
+Public spec id:
 
-## References
+```text
+leviathanmatrix.aep.open-core.v1
+```
 
-- [Solana Agentic Payments](https://solana.com/docs/payments/agentic-payments)
-- [Solana x402 on Solana](https://solana.com/x402)
-- [What is x402?](https://solana.com/x402/what-is-x402)
-- [McKinsey: The economic potential of generative AI](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier)
+Runtime dependencies:
+
+```text
+none
+```
+
+Development dependency:
+
+```text
+pytest
+```
+
+## How Developers Use It
+
+AEP Open Core can be used in three modes.
+
+### Mode 1: CLI Boundary For Demos And Hackathons
+
+Use the CLI when you want to show the full lifecycle quickly:
+
+```bash
+python scripts/aep_cli.py run-text \
+  --text "buy 1 USDC of SOL" \
+  --agent-id demo-agent
+```
+
+This runs:
+
+```text
+intake -> policy -> pass issuance -> capsule binding -> execution guard -> receipt -> review
+```
+
+### Mode 2: Python Library Inside An Agent Runtime
+
+Use the library when another agent framework wants AEP as a pre-execution control plane:
+
+```python
+from aep.kernel import authorize_action, execute_case, review_case, export_execution_claim
+
+case = authorize_action(
+    text="buy 1 USDC of SOL",
+    agent_id="demo-agent",
+)
+
+case = execute_case(case)
+case = review_case(case)
+claim = export_execution_claim(case)
+```
+
+The agent does not need to understand the internals. It needs to respect the boundary:
+
+```text
+if AEP does not authorize, the agent does not execute
+```
+
+### Mode 3: Structured Request Adapter
+
+Use structured requests when a production runtime already has typed action objects:
+
+```text
+agent action JSON
+-> AEP intake
+-> constitution policy
+-> execution pass
+-> capital capsule
+-> guarded execution
+```
+
+The same AEP kernel handles natural language and structured requests, which makes it portable across agent stacks.
+
+See:
+
+- [Installation](docs/installation.md)
+- [Developer Usage](docs/developer-usage.md)
+- [Features And Configuration](docs/features-and-configuration.md)
+- [Architecture](docs/aep-open-core-architecture.md)
+- [Algorithm Notes](docs/algorithm-notes.md)
+- [Design Rationale](docs/design-rationale.md)
+- [Security Model](docs/security-model.md)
+- [Hackathon Demo Guide](docs/hackathon-demo-guide.md)
+
+## Quickstart
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+pytest -q -p no:cacheprovider
+```
+
+For a full install and troubleshooting path, see [Installation](docs/installation.md).
+
+Run an end-to-end governed action:
+
+```bash
+python scripts/aep_cli.py run-text \
+  --text "buy 1 USDC of SOL" \
+  --agent-id demo-agent
+```
+
+Representative output:
+
+```json
+{
+  "ok": true,
+  "producer": {
+    "company": "LeviathanMatrix",
+    "product": "AEP",
+    "project": "LeviathanMatrix AEP Open Core",
+    "component": "cli_summary",
+    "version": "0.1.0",
+    "spec_id": "leviathanmatrix.aep.open-core.v1",
+    "implementation": "leviathanmatrix-aep-open-core"
+  },
+  "authorization": {
+    "status": "AUTHORIZED",
+    "issuance_id": "iss_...",
+    "capsule_id": "capsule_..."
+  },
+  "execution": {
+    "status": "EXECUTED",
+    "execution_id": "exec_...",
+    "tx_id": "tx_..."
+  },
+  "receipt": {
+    "status": "EXECUTED"
+  },
+  "review": {
+    "status": "PASSED"
+  }
+}
+```
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A["Agent request<br/>natural language or JSON"] --> B["Intake Compiler"]
+    B --> C["Canonical Action Request"]
+    C --> D["Intent Builder"]
+    D --> E["Constitution Policy Engine"]
+    E --> F{"Decision"}
+    F -->|deny| X["Blocked before execution"]
+    F -->|allow| G["Execution Pass"]
+    G --> H["Capital Capsule"]
+    H --> I["Execution Guard"]
+    I --> J["Paper Execution Adapter"]
+    J --> K["Receipt"]
+    K --> L["Counterfactual Review"]
+    L --> M["Execution Claim Export"]
+    B --> N["Local Accountability Hash Chain"]
+    E --> N
+    I --> N
+    L --> N
+```
+
+## Core Objects
+
+### 1. Action Request
+
+The intake layer compiles messy agent input into a normalized action request.
+
+Supported action classes include:
+
+- trade
+- payment
+- approve
+- bridge
+- contract call
+
+The important point is not keyword parsing. The important point is that every runtime-facing request becomes the same deterministic object before policy evaluation.
+
+### 2. Constitution
+
+The constitution is a machine-readable policy document. It defines hard boundaries such as:
+
+- allowed chains
+- allowed and forbidden programs
+- per-transaction notional cap
+- daily notional cap
+- slippage limit
+- counterparty requirements
+- bridge exposure limit
+- leverage limit
+- simulation requirement
+
+Hard-constraint failures produce explicit reason codes such as:
+
+```text
+HC_CHAIN_NOT_ALLOWED
+HC_PROGRAM_NOT_ALLOWED
+HC_NOTIONAL_EXCEEDED
+HC_DAILY_LIMIT_EXCEEDED
+HC_SLIPPAGE_EXCEEDED
+HC_COUNTERPARTY_SCORE_LOW
+HC_BRIDGE_EXPOSURE_EXCEEDED
+HC_LEVERAGE_EXCEEDED
+HC_SIMULATION_REQUIRED
+```
+
+### 3. Policy Decision
+
+The policy engine converts structured risk and constitution state into one of:
+
+```text
+ALLOW_WITH_LIGHT_BOND
+ALLOW_WITH_STANDARD_BOND
+ALLOW_WITH_HEAVY_BOND
+DENY
+```
+
+The engine is deterministic. The same constitution, intent, risk input, and prior state produce the same decision.
+
+### 4. Execution Pass
+
+An Execution Pass is the pre-execution permission object.
+
+It contains:
+
+- issuance id
+- pass id
+- status
+- TTL
+- scope
+- policy decision basis
+- capability hash
+
+The capability hash binds the pass to:
+
+- case id
+- request id
+- agent id
+- action payload
+- execution scope
+- policy decision
+- policy reason codes
+- delegation identity
+
+If the request changes after authorization, the capability hash changes and execution fails closed.
+
+### 5. Capital Capsule
+
+A Capital Capsule is a bounded capital envelope for the action.
+
+It contains:
+
+- max notional
+- consumed notional
+- remaining notional
+- valid time window
+- bound pass id
+- execution mode
+- pricing profile
+- status history
+- capsule hash
+
+The capsule prevents open-ended agent authority. It can be issued, armed, consumed, exhausted, revoked, expired, or finalized.
+
+### 6. Receipt And Review
+
+Execution produces a receipt. Review then checks whether the action completed under the expected authorization context.
+
+The review layer also generates counterfactual policy views across strict, baseline, and lenient thresholds, which makes the post-action result easier to reason about.
+
+## Algorithmic Core
+
+### Structural Risk Aggregation
+
+The open risk schema uses eight machine-readable risk axes:
+
+```text
+r1_control
+r2_funding
+r3_convergence
+r4_terminal
+r5_history
+r6_lp_behavior
+r7_anomaly
+x_cross_signal
+```
+
+The structural score is weighted:
+
+```text
+base =
+  0.18 * r1_control
++ 0.17 * r2_funding
++ 0.12 * r3_convergence
++ 0.10 * r4_terminal
++ 0.10 * r5_history
++ 0.13 * r6_lp_behavior
++ 0.10 * r7_anomaly
++ 0.10 * x_cross_signal
+
+token_penalty =
+  weighted_score
+  or 0.40 * permission + 0.35 * rug + 0.25 * history + adjustment
+
+structural_risk = clamp(0.80 * base + 0.20 * token_penalty)
+```
+
+### AEP Risk Score
+
+The policy score combines structural risk with execution context:
+
+```text
+raw =
+  0.30 * structural_risk
++ 0.15 * counterparty_risk
++ 0.15 * execution_complexity_risk
++ 0.10 * market_risk
++ 0.10 * anomaly_risk
++ 0.10 * evidence_gap_risk
++ 0.10 * governance_surface_risk
+
+bonus =
+  0.10 * agent_reputation_bonus
++ 0.10 * treasury_health_bonus
+
+effective_bonus = min(bonus, raw * 0.80)
+risk_score_pre_advisory = clamp(raw - effective_bonus)
+```
+
+The 80 percent bonus cap prevents reputation or treasury strength from reducing risk to a meaningless zero.
+
+### Advisory Floor
+
+Advisory decisions impose a minimum score:
+
+```text
+ALLOW  -> allow_floor_score
+REVIEW -> review_floor_score
+BLOCK  -> block_floor_score
+```
+
+This prevents a low numeric score from overriding a stronger review or block signal.
+
+### Decision Bands
+
+The constitution maps final risk into execution posture:
+
+```text
+risk < allow_light_max     -> ALLOW_WITH_LIGHT_BOND
+risk < allow_standard_max  -> ALLOW_WITH_STANDARD_BOND
+risk < allow_heavy_max     -> ALLOW_WITH_HEAVY_BOND
+otherwise                  -> DENY
+```
+
+Heavy-bond actions do not become ordinary execution passes. They are treated as review-heavy execution posture and fail closed unless the downstream path explicitly supports that posture.
+
+### Capsule Pressure
+
+Capital Capsule pressure is independently computed:
+
+```text
+pressure =
+  risk_weight * open_risk_score
++ volatility_weight * volatility_proxy * 100
++ mode_penalty
++ review_penalty
+```
+
+The result drives:
+
+- review intensity
+- mode restriction
+- revocation sensitivity
+- advisory limit multiplier
+- advisory TTL multiplier
+
+This means execution authority is not only a yes-or-no decision. It becomes a shaped, time-aware capital object.
+
+### Capability Hash
+
+The Execution Pass uses a stable hash over the action and authority tuple:
+
+```text
+capability_hash = sha256(canonical_action_scope + policy_basis + delegation_identity)
+```
+
+If any of these change:
+
+- action kind
+- action payload
+- agent id
+- request id
+- policy result
+- delegation grant
+- execution scope
+
+the pass no longer validates.
+
+## Why Solana
+
+AEP is chain-aware, but Solana is the most natural first environment for Web4 agent execution.
+
+Solana matters because:
+
+- low fees make high-frequency machine checks economically practical
+- fast confirmation compresses the time between decision and execution
+- high throughput makes agent-native workflows realistic
+- Solana already has strong developer mindshare around autonomous payments, x402-style flows, and machine-native commerce
+- the long-tail token environment creates a real need for execution boundaries instead of raw agent freedom
+
+Slow systems can hide weak control behind latency. Fast systems expose weak control immediately.
+
+If agents operate at Solana speed, execution policy also has to operate at Solana speed.
+
+In other words:
+
+```text
+Solana makes autonomous capital movement realistic.
+AEP makes autonomous capital movement governable.
+```
+
+## Demo Commands
+
+Authorize only:
+
+```bash
+python scripts/aep_cli.py authorize-text \
+  --text "buy 1 USDC of SOL" \
+  --agent-id demo-agent
+```
+
+Run the full lifecycle:
+
+```bash
+python scripts/aep_cli.py run-text \
+  --text "buy 1 USDC of SOL" \
+  --agent-id demo-agent
+```
+
+Export a public execution claim:
+
+```bash
+python scripts/aep_cli.py export-claim \
+  --case-id <case_id>
+```
+
+Verify an execution pass:
+
+```bash
+python scripts/aep_cli.py verify-pass \
+  --case-id <case_id>
+```
+
+Verify a capital capsule:
+
+```bash
+python scripts/aep_cli.py verify-capsule \
+  --case-id <case_id>
+```
+
+## Tests
+
+```bash
+pytest -q -p no:cacheprovider
+```
+
+Current coverage includes:
+
+- intake compilation
+- policy decisions
+- risk input schema compatibility
+- delegation resolution
+- Execution Pass issuance and validation
+- Capital Capsule binding and consumption
+- end-to-end execution lifecycle
+- receipt and review handling
+- accountability hash-chain replay
+
+## For Judges
+
+This repository is intentionally runnable.
+
+The fastest way to evaluate it:
+
+1. run tests
+2. run the quickstart command
+3. inspect the generated case under `artifacts/cases`
+4. export the execution claim
+5. mutate the case or request scope and observe validation fail closed
+
+The product value is not that an agent can make a fake paper trade. The value is that agent execution becomes:
+
+- policy-bound
+- time-limited
+- notional-limited
+- hash-anchored
+- reviewable
+- portable across runtimes
+
+That is the execution control layer Web4 agents need before they can be trusted with capital.

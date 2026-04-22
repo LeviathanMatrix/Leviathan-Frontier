@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "intent.schema.json",
+  "title": "AEP Intent v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "intent_id",
+    "agent_id",
+    "intent_type",
+    "chain",
+    "assets_in",
+    "program_calls",
+    "max_cost_usd",
+    "notional_usd",
+    "expiry_ts",
+    "reason",
+    "policy_snapshot_root"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "intent.v1"
+    },
+    "intent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intent_type": {
+      "type": "string",
+      "enum": [
+        "pay",
+        "payment",
+        "swap",
+        "transfer",
+        "stake",
+        "hire",
+        "subscribe",
+        "delegate",
+        "approve",
+        "contract_call",
+        "bridge",
+        "withdraw",
+        "deposit"
+      ]
+    },
+    "chain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assets_in": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/assetAmount" },
+      "minItems": 1
+    },
+    "assets_out_expectation": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/assetAmount" },
+      "default": []
+    },
+    "counterparties": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/counterpartyRef" },
+      "default": []
+    },
+    "program_calls": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/programCall" },
+      "minItems": 1
+    },
+    "max_cost_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "notional_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "slippage_bps": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "expiry_ts": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "requested_at": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidenceRef" },
+      "default": []
+    },
+    "sim_result_hash": {
+      "type": "string"
+    },
+    "policy_snapshot_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "caller_session": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "assetAmount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset", "amount"],
+      "properties": {
+        "asset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "amount": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decimals": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "usd_value": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "counterpartyRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["wallet", "program", "service", "token", "pool", "unknown"]
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "programCall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["program_id", "method"],
+      "properties": {
+        "program_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "accounts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "data_hash": {
+          "type": "string"
+        }
+      }
+    },
+    "evidenceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "ref"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["ipfs", "https", "arweave", "hash", "local"]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

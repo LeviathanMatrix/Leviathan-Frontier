@@ -1,0 +1,168 @@
+{
+  "schema_version": "aep.paper_asset_registry.v1",
+  "updated_at": 1774675200,
+  "assets": [
+    {
+      "symbol": "USDC",
+      "aliases": ["usdc", "usd", "usd coin", "$"],
+      "identifiers": {
+        "solana": {
+          "mainnet_beta": [
+            "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+          ],
+          "devnet": [
+            "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
+          ]
+        }
+      },
+      "decimals": 6,
+      "price_usd": 1.0,
+      "expected_slippage_bps": 5,
+      "paper_depth_usd": 1000000,
+      "risk_profile": {
+        "control_risk": 5,
+        "funding_risk": 6,
+        "history_risk": 5,
+        "governance_surface_risk": 4,
+        "volatility_risk": 2,
+        "anomaly_risk": 3,
+        "liquidity_score": 99,
+        "permission_risk": 2,
+        "rug_risk": 1,
+        "confidence": 0.99,
+        "grade": "A",
+        "drift_state": "stable"
+      }
+    },
+    {
+      "symbol": "SOL",
+      "aliases": ["sol", "wsol", "wrapped sol"],
+      "identifiers": {
+        "solana": {
+          "mainnet_beta": [
+            "So11111111111111111111111111111111111111112"
+          ],
+          "devnet": [
+            "So11111111111111111111111111111111111111112"
+          ]
+        }
+      },
+      "decimals": 9,
+      "price_usd": 145.0,
+      "expected_slippage_bps": 18,
+      "paper_depth_usd": 300000,
+      "risk_profile": {
+        "control_risk": 10,
+        "funding_risk": 12,
+        "history_risk": 10,
+        "governance_surface_risk": 12,
+        "volatility_risk": 28,
+        "anomaly_risk": 10,
+        "liquidity_score": 95,
+        "permission_risk": 5,
+        "rug_risk": 3,
+        "confidence": 0.96,
+        "grade": "A",
+        "drift_state": "stable"
+      }
+    },
+    {
+      "symbol": "ETH",
+      "aliases": ["eth", "ethereum", "weth"],
+      "decimals": 18,
+      "price_usd": 3800.0,
+      "expected_slippage_bps": 20,
+      "paper_depth_usd": 500000,
+      "risk_profile": {
+        "control_risk": 12,
+        "funding_risk": 12,
+        "history_risk": 9,
+        "governance_surface_risk": 14,
+        "volatility_risk": 24,
+        "anomaly_risk": 9,
+        "liquidity_score": 96,
+        "permission_risk": 4,
+        "rug_risk": 2,
+        "confidence": 0.97,
+        "grade": "A",
+        "drift_state": "stable"
+      }
+    },
+    {
+      "symbol": "BTC",
+      "aliases": ["btc", "bitcoin", "wbtc"],
+      "decimals": 8,
+      "price_usd": 68000.0,
+      "expected_slippage_bps": 22,
+      "paper_depth_usd": 650000,
+      "risk_profile": {
+        "control_risk": 14,
+        "funding_risk": 10,
+        "history_risk": 8,
+        "governance_surface_risk": 16,
+        "volatility_risk": 26,
+        "anomaly_risk": 8,
+        "liquidity_score": 97,
+        "permission_risk": 4,
+        "rug_risk": 2,
+        "confidence": 0.97,
+        "grade": "A",
+        "drift_state": "stable"
+      }
+    },
+    {
+      "symbol": "BONK",
+      "aliases": ["bonk"],
+      "decimals": 5,
+      "price_usd": 0.000028,
+      "expected_slippage_bps": 65,
+      "paper_depth_usd": 40000,
+      "risk_profile": {
+        "control_risk": 40,
+        "funding_risk": 46,
+        "history_risk": 42,
+        "governance_surface_risk": 48,
+        "volatility_risk": 58,
+        "anomaly_risk": 44,
+        "liquidity_score": 72,
+        "permission_risk": 35,
+        "rug_risk": 28,
+        "confidence": 0.78,
+        "grade": "B",
+        "drift_state": "watch"
+      }
+    },
+    {
+      "symbol": "HELP",
+      "aliases": ["help", "help6"],
+      "identifiers": {
+        "solana": {
+          "mainnet_beta": [
+            "HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC"
+          ],
+          "devnet": [
+            "HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC"
+          ]
+        }
+      },
+      "decimals": 6,
+      "price_usd": 0.04,
+      "expected_slippage_bps": 180,
+      "paper_depth_usd": 8000,
+      "risk_profile": {
+        "control_risk": 88,
+        "funding_risk": 84,
+        "history_risk": 82,
+        "governance_surface_risk": 92,
+        "volatility_risk": 86,
+        "anomaly_risk": 90,
+        "liquidity_score": 18,
+        "permission_risk": 86,
+        "rug_risk": 92,
+        "confidence": 0.35,
+        "grade": "Rug",
+        "drift_state": "outlier"
+      }
+    }
+  ]
+}

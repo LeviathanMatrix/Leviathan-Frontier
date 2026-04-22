@@ -1,0 +1,18 @@
+{
+  "schema_version": "aep.paper_portfolios.v1",
+  "updated_at": 1774675200,
+  "portfolios": [
+    {
+      "agent_id": "aep:solana:agent-alpha",
+      "base_currency": "USDC",
+      "balances": {
+        "USDC": 20000.0,
+        "SOL": 0.0,
+        "ETH": 0.0,
+        "BTC": 0.0,
+        "BONK": 0.0,
+        "HELP": 0.0
+      }
+    }
+  ]
+}

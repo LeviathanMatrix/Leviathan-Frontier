@@ -1,0 +1,10 @@
+LeviathanMatrix AEP Open Core
+
+This open-source package is produced by LeviathanMatrix.
+
+Public specification id:
+  leviathanmatrix.aep.open-core.v1
+
+The package contains the public LeviathanMatrix AEP execution-control kernel,
+including policy checks, Execution Pass issuance, Capital Capsules, local
+execution review, schemas, examples, and tests.

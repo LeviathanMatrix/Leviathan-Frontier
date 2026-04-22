@@ -1,0 +1,43 @@
+{
+  "schema_version": "aep.delegation_grants.v1",
+  "updated_at": 1775419200,
+  "grants": [
+    {
+      "grant_id": "grant-public-api-shell-alpha",
+      "principal_id": "principal:fund-alpha",
+      "delegate_id": "aep:solana:agent-alpha",
+      "role": "trader_agent",
+      "allowed_actions": [
+        "trade",
+        "payment",
+        "approve",
+        "bridge",
+        "contract_call"
+      ],
+      "asset_scope_mode": "all",
+      "asset_scope": [
+        "USDC",
+        "SOL",
+        "DoBAMMqcedjoWV3m7JEU1pAzZjkQqeQzbdLUA2etbonk",
+        "ACtfUWtgvaXrQGNMiohTusi5jcx5RJf5zwu9aAxkpump",
+        "UNK3F375B9E"
+      ],
+      "program_scope": [
+        "paper.virtual.exchange",
+        "paper.virtual.payments",
+        "paper.virtual.bridge",
+        "aep.controlled.devnet.swap_proxy"
+      ],
+      "notional_limits": {
+        "per_tx_usd": 10.0,
+        "daily_usd": 1000.0
+      },
+      "valid_from": 1700000000,
+      "valid_until": 1893456000,
+      "required_policy_level": "standard",
+      "required_risk_band": "medium",
+      "active": true,
+      "audit_label": "public-api-shell-default-delegation"
+    }
+  ]
+}
