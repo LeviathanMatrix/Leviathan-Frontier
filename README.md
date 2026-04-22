@@ -153,6 +153,7 @@ See:
 - [Installation](docs/installation.md)
 - [Developer Usage](docs/developer-usage.md)
 - [Features And Configuration](docs/features-and-configuration.md)
+- [Reproducible Execution Cases](docs/reproducible-execution-cases.md)
 - [Architecture](docs/aep-open-core-architecture.md)
 - [Algorithm Notes](docs/algorithm-notes.md)
 - [Design Rationale](docs/design-rationale.md)
@@ -562,7 +563,7 @@ The fastest way to evaluate it:
 4. export the execution claim
 5. mutate the case or request scope and observe validation fail closed
 
-The product value is not that an agent can make a fake paper trade. The value is that agent execution becomes:
+The product value is not that an agent can print a paper execution trace. The value is that agent execution becomes:
 
 - policy-bound
 - time-limited
