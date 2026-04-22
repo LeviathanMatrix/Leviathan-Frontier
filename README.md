@@ -153,7 +153,6 @@ See:
 - [Installation](docs/installation.md)
 - [Developer Usage](docs/developer-usage.md)
 - [Features And Configuration](docs/features-and-configuration.md)
-- [Synthetic Demo Cases](docs/synthetic-demo-cases.md)
 - [Architecture](docs/aep-open-core-architecture.md)
 - [Algorithm Notes](docs/algorithm-notes.md)
 - [Design Rationale](docs/design-rationale.md)
