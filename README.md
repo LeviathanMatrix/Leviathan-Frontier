@@ -17,6 +17,58 @@ The core claim is simple:
 
 > In Web4, an agent should not be able to move capital just because it can produce a prompt, hold a key, or call a tool. It should need a policy-bound, time-limited, cryptographically anchored execution object.
 
+## Why This Layer Matters
+
+Many teams are building agent wallets. Wallets answer an important question:
+
+```text
+Can the agent access funds?
+```
+
+AEP focuses on the next question:
+
+```text
+Can the agent execute with funds safely, within policy, amount, time, and review boundaries?
+```
+
+Traditional wallets, payments, and onchain interactions were designed for
+humans: a human signs, confirms, and reviews the action. Even when an agent can
+connect to a wallet, that does not automatically make it safe to operate real
+capital. If the agent loses control, overspends, buys the wrong asset, or
+mutates its execution scope, the damage can be immediate and hard to review.
+
+LeviathanMatrix is not building another wallet. We are building an Agent
+Capital Execution Safety Layer.
+
+AEP turns each agent intent into a policy-checked, verifiable, time-limited,
+notional-limited Execution Pass, binds execution through a Capital Capsule, and
+anchors lifecycle proof commitments on Solana.
+
+We are not trying to make agents smarter. We are making sure that when agents
+act, they do not blow up capital.
+
+## 为什么需要这一层
+
+很多团队正在做 Agent 钱包。钱包解决的是一个重要问题：
+
+```text
+Agent 能不能接触资金？
+```
+
+AEP 关注的是下一层问题：
+
+```text
+Agent 能不能在策略、额度、时间和审核边界内安全执行资金动作？
+```
+
+传统钱包、支付和链上交互都是为人设计的：人来签名，人来确认，人来复盘。即使 Agent 能接入钱包，也不代表它能安全地运作真实资金。一旦 Agent 失控、超额、买错资产、或者执行范围被改变，损失会立刻发生，而且很难追责和复盘。
+
+LeviathanMatrix 做的不是又一个钱包，而是 **Agent Capital Execution Safety Layer**。
+
+AEP 把 Agent 的每一个意图，转化为经过政策检查、可验证、带时间限制和额度限制的 Execution Pass，再通过 Capital Capsule 约束资金执行，并把生命周期证明哈希锚定到 Solana。
+
+我们不是让 Agent 变得更聪明，而是让它在行动时，不会把资金搞炸。
+
 ## Live Solana Devnet Proof
 
 AEP Open Core now includes a minimal Anchor program deployed on Solana Devnet.
