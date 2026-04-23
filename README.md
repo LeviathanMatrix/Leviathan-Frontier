@@ -2,7 +2,12 @@
 
 **Open execution-control infrastructure for Web4 agents: policy-bound authorization, Execution Passes, Capital Capsules, receipts, and reviewable actions.**
 
-LeviathanMatrix AEP Open Core is an open-source execution-control layer for autonomous agents. It turns an agent request such as `buy 1 USDC of SOL` into a governed execution lifecycle:
+LeviathanMatrix AEP Open Core is an open-source execution-control layer for
+autonomous agents with a live Solana Devnet proof anchor.
+
+It turns an agent request such as `buy 1 USDC of SOL` into a governed execution
+lifecycle, then anchors the lifecycle result to Solana as compact hash
+commitments:
 
 ```text
 request -> structured intent -> policy decision -> execution pass -> capital capsule -> bounded execution -> receipt -> review -> accountable claim
@@ -12,7 +17,52 @@ The core claim is simple:
 
 > In Web4, an agent should not be able to move capital just because it can produce a prompt, hold a key, or call a tool. It should need a policy-bound, time-limited, cryptographically anchored execution object.
 
-This repository now contains the runnable AEP Open Core implementation.
+## Live Solana Devnet Proof
+
+AEP Open Core now includes a minimal Anchor program deployed on Solana Devnet.
+The AEP engine makes the execution decision, and Solana records the proof
+anchor.
+
+Program ID:
+
+```text
+5LY2YsVpAhES2nq9TT7iQn4gGAy8vdb4nkE3XyQzMw4q
+```
+
+Confirmed Devnet proof-anchor transaction:
+
+```text
+57c51zE8QZ3vrZ4My5Jgp1ssFAhEP8vRa72X8apg8QKxE3VSCY1J1gQCU8SZFU83gu2XTryWopGZvTRd4P6SV5Qx
+```
+
+Explorer:
+
+```text
+https://explorer.solana.com/tx/57c51zE8QZ3vrZ4My5Jgp1ssFAhEP8vRa72X8apg8QKxE3VSCY1J1gQCU8SZFU83gu2XTryWopGZvTRd4P6SV5Qx?cluster=devnet
+```
+
+Case anchor PDA:
+
+```text
+6anfG5xVC57Vsp2SxxQF9nnRQCSrU48WNeAhMBDTf952
+```
+
+The on-chain account stores hash commitments for the case, Execution Pass,
+Capital Capsule, receipt, review, and accountability log head. It does not
+store raw prompts, private keys, full policy files, or private agent strategy.
+
+See [Solana Devnet Proof Anchor](docs/solana-devnet-proof-anchor.md) for the
+architecture and reproduction path.
+
+## Self-Hosted By Design
+
+Developers can run AEP Open Core on their own machine or inside their own agent
+runtime. The open-core path does not require a LeviathanMatrix server, a hosted
+API, or a LeviathanMatrix wallet.
+
+When a developer wants to create a Solana proof anchor, they use their own
+Solana Devnet wallet to pay the Devnet transaction fee and create their own
+anchor account.
 
 ## AEP Visual Story
 
@@ -33,6 +83,8 @@ behind a reviewable lifecycle after execution.
 ## 中文介绍
 
 **LeviathanMatrix AEP Open Core 是面向 Web4 Agent 的开源执行控制基础设施。**
+
+当前版本已经包含 Solana Devnet 上的最小证明锚点程序：AEP 在开发者自己的环境里完成授权、签发、胶囊、回执和审核，然后把结果哈希锚定到 Solana Devnet，形成可公开查看的链上证明。
 
 它解决的不是“让 AI Agent 会调用工具”这个低层问题，而是更关键的问题：
 
@@ -120,9 +172,10 @@ This repository includes the open AEP implementation:
 - delegation grant resolver
 - Execution Pass issuance
 - Capital Capsule lifecycle
-- bounded paper execution adapter
+- bounded execution adapter for reproducible demos
 - receipt and review pipeline
-- local accountability hash chain
+- accountability hash chain
+- Solana Devnet proof-anchor program
 - CLI and examples
 - schemas, fixtures, and tests
 
@@ -132,21 +185,24 @@ Public spec id:
 leviathanmatrix.aep.open-core.v1
 ```
 
-Runtime dependencies:
+Core runtime dependencies:
 
 ```text
 none
 ```
 
-Development dependency:
+Development and Solana proof-anchor dependencies:
 
 ```text
 pytest
+anchor
+node/npm
+@coral-xyz/anchor
 ```
 
 ## How Developers Use It
 
-AEP Open Core can be used in three modes.
+AEP Open Core can be used in four modes.
 
 ### Mode 1: CLI Boundary For Demos And Hackathons
 
@@ -201,6 +257,18 @@ agent action JSON
 ```
 
 The same AEP kernel handles natural language and structured requests, which makes it portable across agent stacks.
+
+### Mode 4: Solana Devnet Proof Anchor
+
+Use the Anchor proof program when you want the AEP lifecycle result to have a
+public Solana verification surface:
+
+```text
+AEP lifecycle -> hash commitments -> Solana Devnet proof anchor PDA
+```
+
+This mode still does not require a LeviathanMatrix server. It uses the
+developer's own Devnet wallet.
 
 See:
 
@@ -549,42 +617,6 @@ Solana makes autonomous capital movement realistic.
 AEP makes autonomous capital movement governable.
 ```
 
-## Solana Devnet Proof Anchor
-
-AEP Open Core now includes a minimal Anchor program that records an AEP
-execution lifecycle as a Solana Devnet proof anchor.
-
-The AEP decision engine remains off-chain. The on-chain program stores only
-hash commitments for the case, Execution Pass, Capital Capsule, receipt,
-review, and accountability log head.
-
-Program ID:
-
-```text
-5LY2YsVpAhES2nq9TT7iQn4gGAy8vdb4nkE3XyQzMw4q
-```
-
-Confirmed Devnet proof-anchor transaction:
-
-```text
-57c51zE8QZ3vrZ4My5Jgp1ssFAhEP8vRa72X8apg8QKxE3VSCY1J1gQCU8SZFU83gu2XTryWopGZvTRd4P6SV5Qx
-```
-
-Explorer:
-
-```text
-https://explorer.solana.com/tx/57c51zE8QZ3vrZ4My5Jgp1ssFAhEP8vRa72X8apg8QKxE3VSCY1J1gQCU8SZFU83gu2XTryWopGZvTRd4P6SV5Qx?cluster=devnet
-```
-
-Case anchor PDA:
-
-```text
-6anfG5xVC57Vsp2SxxQF9nnRQCSrU48WNeAhMBDTf952
-```
-
-See [Solana Devnet Proof Anchor](docs/solana-devnet-proof-anchor.md) for the
-architecture, commands, and reproduction path.
-
 ## Demo Commands
 
 Authorize only:
@@ -644,7 +676,8 @@ Current coverage includes:
 
 ## For Judges
 
-This repository is intentionally runnable.
+This repository is intentionally runnable and has a live Solana Devnet proof
+anchor.
 
 The fastest way to evaluate it:
 
@@ -654,7 +687,7 @@ The fastest way to evaluate it:
 4. export the execution claim
 5. mutate the case or request scope and observe validation fail closed
 
-The product value is not that an agent can print a paper execution trace. The value is that agent execution becomes:
+The product value is not that an agent can print an execution trace. The value is that agent execution becomes:
 
 - policy-bound
 - time-limited

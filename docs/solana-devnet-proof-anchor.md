@@ -82,6 +82,21 @@ The on-chain account does **not** store:
 
 This makes the Solana account a public proof anchor, not a data leak.
 
+## Deployment Model
+
+AEP Open Core is self-hosted by design.
+
+Developers do not need to connect to a LeviathanMatrix server to run the
+open-core engine. They can run the AEP lifecycle on their own machine or inside
+their own agent runtime.
+
+Developers also do not need to use a LeviathanMatrix wallet. If they want to
+create new Solana proof anchors, they use their own Devnet wallet to sign the
+transaction and pay the Devnet fee.
+
+The public Devnet deployment above is a reference deployment for judges,
+builders, and reviewers.
+
 ## Verdict Codes
 
 ```text
@@ -200,23 +215,12 @@ explorer_url
 
 ## Why This Matters
 
-Before this proof-anchor layer, AEP Open Core could demonstrate the execution
-control lifecycle locally.
-
-With the Solana proof anchor, the lifecycle also produces a real Devnet
+With the Solana proof anchor, an AEP lifecycle can produce a real Devnet
 transaction and a public Solana account that can be inspected independently.
 
-That changes the demo from:
-
-```text
-local execution kernel
-```
-
-to:
-
-```text
-local execution kernel + Solana on-chain proof anchor
-```
+That means the project is not only an execution-control kernel. It also has a
+Solana verification surface for the lifecycle result.
 
 This is the minimum useful Solana-native footprint for the current open-core
-stage.
+stage: keep the control logic inspectable and developer-owned, then anchor the
+result to Solana.
