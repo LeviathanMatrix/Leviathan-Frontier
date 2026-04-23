@@ -112,10 +112,10 @@ These videos show an external Hermes agent using AEP as the execution-control
 boundary. The first demo shows a successful governed execution flow. The second
 demo shows the agent pulling the audit/log output after execution.
 
-| Demo | What It Shows | Video |
-| --- | --- | --- |
-| Hermes Agent AEP Execution | Agent request routed through AEP authorization, execution, receipt, and review | [Watch MOV](docs/assets/demo/hermes-agent-aep-execution.mov) |
-| Hermes Agent Audit Log Pull | Agent retrieves the post-execution audit/log output | [Watch MOV](docs/assets/demo/hermes-agent-aep-audit-log.mov) |
+| AEP Execution Through Hermes | AEP Audit Retrieval Through Hermes |
+| --- | --- |
+| [![AEP execution through Hermes](https://img.youtube.com/vi/vRsmemDOKdg/hqdefault.jpg)](https://youtu.be/vRsmemDOKdg?si=5tm1mhnhGgrR81CL) | [![AEP audit retrieval through Hermes](https://img.youtube.com/vi/EK7J59XoqpI/hqdefault.jpg)](https://youtu.be/EK7J59XoqpI?si=j_M1hljHsk-xs7T5) |
+| [Watch on YouTube](https://youtu.be/vRsmemDOKdg?si=5tm1mhnhGgrR81CL) | [Watch on YouTube](https://youtu.be/EK7J59XoqpI?si=j_M1hljHsk-xs7T5) |
 
 ## Self-Hosted By Design
 

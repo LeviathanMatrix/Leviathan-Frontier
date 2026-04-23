@@ -42,10 +42,10 @@ What to point out:
 
 ## 4. Show The Agent Runtime Demo Videos
 
-The repository includes two short videos under `docs/assets/demo/`:
+The README includes two YouTube demos:
 
-- [Hermes Agent AEP Execution](assets/demo/hermes-agent-aep-execution.mov)
-- [Hermes Agent Audit Log Pull](assets/demo/hermes-agent-aep-audit-log.mov)
+- [AEP execution through Hermes](https://youtu.be/vRsmemDOKdg?si=5tm1mhnhGgrR81CL)
+- [AEP audit retrieval through Hermes](https://youtu.be/EK7J59XoqpI?si=j_M1hljHsk-xs7T5)
 
 Use them to show that AEP can sit between an external agent runtime and the
 execution path, not only behind a standalone CLI.
