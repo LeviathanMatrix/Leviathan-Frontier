@@ -1,0 +1,14 @@
+[workspace]
+members = ["programs/aep-proof-anchor"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "LicenseRef-LeviathanMatrix-AEP-Open-Core-NC-1.0"
+
+[workspace.dependencies]
+anchor-lang = "0.32.1"
+
+[profile.release]
+overflow-checks = true

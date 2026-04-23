@@ -208,6 +208,7 @@ See:
 - [Developer Usage](docs/developer-usage.md)
 - [Features And Configuration](docs/features-and-configuration.md)
 - [Reproducible Execution Cases](docs/reproducible-execution-cases.md)
+- [Solana Devnet Proof Anchor](docs/solana-devnet-proof-anchor.md)
 - [Architecture](docs/aep-open-core-architecture.md)
 - [Algorithm Notes](docs/algorithm-notes.md)
 - [Design Rationale](docs/design-rationale.md)
@@ -547,6 +548,42 @@ In other words:
 Solana makes autonomous capital movement realistic.
 AEP makes autonomous capital movement governable.
 ```
+
+## Solana Devnet Proof Anchor
+
+AEP Open Core now includes a minimal Anchor program that records an AEP
+execution lifecycle as a Solana Devnet proof anchor.
+
+The AEP decision engine remains off-chain. The on-chain program stores only
+hash commitments for the case, Execution Pass, Capital Capsule, receipt,
+review, and accountability log head.
+
+Program ID:
+
+```text
+5LY2YsVpAhES2nq9TT7iQn4gGAy8vdb4nkE3XyQzMw4q
+```
+
+Confirmed Devnet proof-anchor transaction:
+
+```text
+57c51zE8QZ3vrZ4My5Jgp1ssFAhEP8vRa72X8apg8QKxE3VSCY1J1gQCU8SZFU83gu2XTryWopGZvTRd4P6SV5Qx
+```
+
+Explorer:
+
+```text
+https://explorer.solana.com/tx/57c51zE8QZ3vrZ4My5Jgp1ssFAhEP8vRa72X8apg8QKxE3VSCY1J1gQCU8SZFU83gu2XTryWopGZvTRd4P6SV5Qx?cluster=devnet
+```
+
+Case anchor PDA:
+
+```text
+6anfG5xVC57Vsp2SxxQF9nnRQCSrU48WNeAhMBDTf952
+```
+
+See [Solana Devnet Proof Anchor](docs/solana-devnet-proof-anchor.md) for the
+architecture, commands, and reproduction path.
 
 ## Demo Commands
 

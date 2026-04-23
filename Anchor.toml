@@ -1,0 +1,19 @@
+[toolchain]
+anchor_version = "0.32.1"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+aep_proof_anchor = "5LY2YsVpAhES2nq9TT7iQn4gGAy8vdb4nkE3XyQzMw4q"
+
+[programs.devnet]
+aep_proof_anchor = "5LY2YsVpAhES2nq9TT7iQn4gGAy8vdb4nkE3XyQzMw4q"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "cargo test --workspace"

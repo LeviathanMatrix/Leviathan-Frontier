@@ -88,7 +88,31 @@ What to point out:
 
 This demonstrates fail-closed behavior.
 
-## 7. Demo The Core Thesis
+## 7. Show The Solana Devnet Proof Anchor
+
+AEP Open Core includes a minimal Anchor program for recording the execution
+lifecycle as a Solana Devnet proof anchor.
+
+Program ID:
+
+```text
+5LY2YsVpAhES2nq9TT7iQn4gGAy8vdb4nkE3XyQzMw4q
+```
+
+Confirmed Devnet transaction:
+
+```text
+https://explorer.solana.com/tx/57c51zE8QZ3vrZ4My5Jgp1ssFAhEP8vRa72X8apg8QKxE3VSCY1J1gQCU8SZFU83gu2XTryWopGZvTRd4P6SV5Qx?cluster=devnet
+```
+
+What to point out:
+
+- the AEP decision happens off-chain;
+- the proof of the AEP lifecycle is anchored on Solana Devnet;
+- the chain account stores hashes, not raw strategy or private data;
+- judges can inspect the transaction in Solana Explorer.
+
+## 8. Demo The Core Thesis
 
 The one-line demo:
 
@@ -97,7 +121,7 @@ We are not showing that an agent can trade. Everybody can do that.
 We are showing that an agent cannot trade unless its action becomes policy-bound, time-limited, notional-limited, and reviewable.
 ```
 
-## 8. Judge Talking Points
+## 9. Judge Talking Points
 
 Use these:
 
@@ -107,8 +131,9 @@ Use these:
 - Capability hash blocks scope mutation between authorization and execution.
 - Constitution rules make policy portable across agent runtimes.
 - Solana is the natural first target because high-speed agent finance needs high-speed execution policy.
+- The Devnet proof anchor gives the local AEP lifecycle a public Solana verification surface.
 
-## 9. Thirty-Second Pitch
+## 10. Thirty-Second Pitch
 
 ```text
 Most agent demos prove that an AI can call a tool.
@@ -121,11 +146,12 @@ intent, constitution, risk score, execution pass, capital capsule, receipt, revi
 This is the control plane agents need before they can safely operate in Solana-speed finance.
 ```
 
-## 10. What To Show On Screen
+## 11. What To Show On Screen
 
 Open these files during the demo:
 
 - `aep/kernel.py`: the lifecycle orchestration
+- `programs/aep-proof-anchor/src/lib.rs`: the minimal Solana proof anchor
 - `policy_engine/engine.py`: deterministic policy scoring and reason codes
 - `aep/issuance.py`: Execution Pass and capability hash
 - `aep/capsule.py`: Capital Capsule lifecycle and notional guard
@@ -133,7 +159,7 @@ Open these files during the demo:
 - `docs/algorithm-notes.md`: algorithm explanation
 - `docs/design-rationale.md`: why the architecture exists
 
-## 11. Solana Framing
+## 12. Solana Framing
 
 Say this clearly:
 

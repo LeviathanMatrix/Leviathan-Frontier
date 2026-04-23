@@ -1,0 +1,19 @@
+{
+  "name": "leviathanmatrix-aep-open-core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Solana Devnet proof anchor scripts for LeviathanMatrix AEP Open Core",
+  "scripts": {
+    "anchor:build": "anchor build",
+    "anchor:case": "tsx scripts/anchor_case.ts"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.32.1",
+    "@solana/web3.js": "^1.98.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0"
+  }
+}
