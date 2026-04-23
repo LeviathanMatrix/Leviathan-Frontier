@@ -54,6 +54,17 @@ store raw prompts, private keys, full policy files, or private agent strategy.
 See [Solana Devnet Proof Anchor](docs/solana-devnet-proof-anchor.md) for the
 architecture and reproduction path.
 
+## Agent Runtime Demo Videos
+
+These videos show an external Hermes agent using AEP as the execution-control
+boundary. The first demo shows a successful governed execution flow. The second
+demo shows the agent pulling the audit/log output after execution.
+
+| Demo | What It Shows | Video |
+| --- | --- | --- |
+| Hermes Agent AEP Execution | Agent request routed through AEP authorization, execution, receipt, and review | [Watch MOV](docs/assets/demo/hermes-agent-aep-execution.mov) |
+| Hermes Agent Audit Log Pull | Agent retrieves the post-execution audit/log output | [Watch MOV](docs/assets/demo/hermes-agent-aep-audit-log.mov) |
+
 ## Self-Hosted By Design
 
 Developers can run AEP Open Core on their own machine or inside their own agent

@@ -40,7 +40,17 @@ What to point out:
 - execution produced a receipt
 - review produced a final status
 
-## 4. Inspect The Case
+## 4. Show The Agent Runtime Demo Videos
+
+The repository includes two short videos under `docs/assets/demo/`:
+
+- [Hermes Agent AEP Execution](assets/demo/hermes-agent-aep-execution.mov)
+- [Hermes Agent Audit Log Pull](assets/demo/hermes-agent-aep-audit-log.mov)
+
+Use them to show that AEP can sit between an external agent runtime and the
+execution path, not only behind a standalone CLI.
+
+## 5. Inspect The Case
 
 Cases are written under:
 
@@ -61,7 +71,7 @@ Open the generated case and point to:
 - `receipt`
 - `review`
 
-## 5. Export The Execution Claim
+## 6. Export The Execution Claim
 
 ```bash
 python scripts/aep_cli.py export-claim \
@@ -70,7 +80,7 @@ python scripts/aep_cli.py export-claim \
 
 The exported claim is the shareable summary of the governed action.
 
-## 6. Demo A Denial
+## 7. Demo A Denial
 
 ```bash
 python scripts/aep_cli.py run-text \
@@ -88,7 +98,7 @@ What to point out:
 
 This demonstrates fail-closed behavior.
 
-## 7. Show The Solana Devnet Proof Anchor
+## 8. Show The Solana Devnet Proof Anchor
 
 AEP Open Core includes a minimal Anchor program for recording the execution
 lifecycle as a Solana Devnet proof anchor.
@@ -112,7 +122,7 @@ What to point out:
 - the chain account stores hashes, not raw strategy or private data;
 - judges can inspect the transaction in Solana Explorer.
 
-## 8. Demo The Core Thesis
+## 9. Demo The Core Thesis
 
 The one-line demo:
 
@@ -121,7 +131,7 @@ We are not showing that an agent can trade. Everybody can do that.
 We are showing that an agent cannot trade unless its action becomes policy-bound, time-limited, notional-limited, and reviewable.
 ```
 
-## 9. Judge Talking Points
+## 10. Judge Talking Points
 
 Use these:
 
@@ -133,7 +143,7 @@ Use these:
 - Solana is the natural first target because high-speed agent finance needs high-speed execution policy.
 - The Devnet proof anchor gives the local AEP lifecycle a public Solana verification surface.
 
-## 10. Thirty-Second Pitch
+## 11. Thirty-Second Pitch
 
 ```text
 Most agent demos prove that an AI can call a tool.
@@ -146,7 +156,7 @@ intent, constitution, risk score, execution pass, capital capsule, receipt, revi
 This is the control plane agents need before they can safely operate in Solana-speed finance.
 ```
 
-## 11. What To Show On Screen
+## 12. What To Show On Screen
 
 Open these files during the demo:
 
@@ -159,7 +169,7 @@ Open these files during the demo:
 - `docs/algorithm-notes.md`: algorithm explanation
 - `docs/design-rationale.md`: why the architecture exists
 
-## 12. Solana Framing
+## 13. Solana Framing
 
 Say this clearly:
 

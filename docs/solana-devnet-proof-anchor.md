@@ -221,6 +221,6 @@ transaction and a public Solana account that can be inspected independently.
 That means the project is not only an execution-control kernel. It also has a
 Solana verification surface for the lifecycle result.
 
-This is the minimum useful Solana-native footprint for the current open-core
+This is the minimum useful Solana-facing footprint for the current open-core
 stage: keep the control logic inspectable and developer-owned, then anchor the
 result to Solana.
