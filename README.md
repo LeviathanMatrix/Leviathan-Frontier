@@ -1,5 +1,16 @@
 # LeviathanMatrix AEP Open Core
 
+![Official](https://img.shields.io/badge/OFFICIAL-LeviathanMatrix-8A2BE2?style=for-the-badge)
+![AEP Open Core](https://img.shields.io/badge/AEP-Open%20Core-0EA5E9?style=for-the-badge)
+![Protocol](https://img.shields.io/badge/Protocol-v0.1.0-0284C7?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Hackathon%20Devnet-F97316?style=for-the-badge)
+
+![Network](https://img.shields.io/badge/Network-Solana%20Devnet-14F195?style=flat-square)
+![Execution Pass](https://img.shields.io/badge/Execution%20Pass-Policy--Bound-7C3AED?style=flat-square)
+![Capital Capsule](https://img.shields.io/badge/Capital%20Capsule-Notional--Limited-0F766E?style=flat-square)
+![Proof Anchor](https://img.shields.io/badge/Proof%20Anchor-Onchain%20Hash%20Commitments-2563EB?style=flat-square)
+![License](https://img.shields.io/badge/License-Non--Commercial-yellow?style=flat-square)
+
 **Open execution-control infrastructure for Web4 agents: policy-bound authorization, Execution Passes, Capital Capsules, receipts, and reviewable actions.**
 
 LeviathanMatrix AEP Open Core is an open-source execution-control layer for
