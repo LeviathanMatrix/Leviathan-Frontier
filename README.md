@@ -138,187 +138,29 @@ When a developer wants to create a Solana proof anchor, they use their own
 Solana Devnet wallet to pay the Devnet transaction fee and create their own
 anchor account.
 
-## Leviathan Public Console And Pilot API
+## Open Core And Private Pilot Boundary
 
-Leviathan also runs a public read-only clearing console:
+This repository contains **AEP Open Core**: the open execution-control kernel,
+schemas, demos, tests, and Solana Devnet proof-anchor path.
 
-```text
-https://console.leviathanmatrix.com/console
-```
+It does not include the hosted LeviathanMatrix service, managed integration
+packages, commercial clearing implementation, private deployment
+configuration, production service logic, API keys, wallets, or secrets.
 
-The public console shows cases, proof bundles, evidence trails, and clearing
-challenge results. It is a demonstration and pilot review surface. It is not a
-wallet, not a trading venue, and not a place to upload private keys.
+The hosted LeviathanMatrix pilot is available by private request for teams that
+want managed agent onboarding, policy-bound authorization, receipt and proof
+review, security inspection providers, and clearing review surfaces around live
+agent workflows.
 
-Pilot users can request API access by email:
+Contact:
 
 ```text
 Gauss8008@gmail.com
 ```
 
-Please include:
-
-- who you are or what your company does
-- why you want to use Leviathan
-- which agent framework you use
-- whether you want AEP, arbitration review, or both
-- expected request volume or test quota
-- what kind of actions you want to guard or review
-
-### Pilot Integration Flow
-
-For hosted pilot access, the normal path is:
-
-```text
-1. Request an API key from LeviathanMatrix.
-2. Open the console and enter the issued API key.
-3. Configure your agent's Connect Profile: AEP only, arbitration only, or AEP + arbitration.
-4. Choose shallow, medium, or deep integration depth.
-5. Download the customer MCP package.
-6. Install the MCP server and skill into your agent framework.
-7. Put the API endpoint, API key, and issued agent_id in the local `.env`.
-8. Restart the agent and ask it to check Leviathan connection status.
-```
-
-The server owns the latest Connect Profile, policy thresholds, cases, proof
-bundles, audit state, and clearing review state. The local MCP package is only a
-thin tool shell that calls the Leviathan Pilot API.
-
-### Download The Customer MCP Package
-
-```bash
-cd ~/Desktop
-curl -L -o leviathan-customer-mcp-0.1.0.zip https://console.leviathanmatrix.com/downloads/mcp/leviathan-customer-mcp-0.1.0.zip
-unzip leviathan-customer-mcp-0.1.0.zip
-cd leviathan-customer-mcp
-```
-
-You can use the one-command installer:
-
-```bash
-./install_agent.sh <target> "YOUR_API_KEY" "YOUR_AGENT_ID"
-```
-
-Supported pilot targets:
-
-```text
-hermes
-cursor
-cursor-project
-cline
-claude-code
-openclaw
-generic
-```
-
-You can also install manually.
-
-### Manual MCP Configuration
-
-Create a local Python environment for the MCP shell:
-
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-```
-
-Create `leviathan-customer-mcp/.env`:
-
-```env
-LEVIATHAN_API_BASE_URL=https://console.leviathanmatrix.com/api/pilot
-LEVIATHAN_API_ACCESS_TOKEN=YOUR_API_KEY
-LEVIATHAN_AGENT_ID=YOUR_AGENT_ID
-LEVIATHAN_API_TIMEOUT_SECONDS=60
-```
-
-Add this MCP server entry to any MCP-compatible agent framework:
-
-```json
-{
-  "mcpServers": {
-    "leviathan": {
-      "command": "/absolute/path/to/leviathan-customer-mcp/.venv/bin/python",
-      "args": [
-        "/absolute/path/to/leviathan-customer-mcp/leviathan_mcp.py",
-        "--transport",
-        "stdio"
-      ],
-      "env": {
-        "LEVIATHAN_ENV_FILE": "/absolute/path/to/leviathan-customer-mcp/.env"
-      }
-    }
-  }
-}
-```
-
-After restart, ask the agent:
-
-```text
-Use Leviathan to check connection status.
-```
-
-### Skill Installation
-
-MCP gives the agent tools. The skill gives the agent behavior rules.
-
-The package includes:
-
-```text
-leviathan-customer-mcp/skill/leviathan-clearing/SKILL.md
-```
-
-Install the whole `leviathan-clearing` folder into your agent's skill or rules
-directory. If your framework does not support skills, copy the contents of
-`SKILL.md` into the agent's system instructions or rules file.
-
-Critical rule:
-
-```text
-Before any transfer, swap, trade, bridge, approval, payment, signing, or execution request, call Leviathan run_action first. Never send private keys, seed phrases, wallet files, wallet paths, local filesystem paths, API keys, exchange secrets, or strategy source code to Leviathan.
-```
-
-### Hermes Example
-
-```bash
-./install_agent.sh hermes "YOUR_API_KEY" "YOUR_AGENT_ID" --agent-home "$HOME/Desktop/hermes-agent"
-```
-
-Manual Hermes paths:
-
-```text
-MCP config: <hermes-agent>/.hermes/config.yaml
-Skill folder: <hermes-agent>/.hermes/skills/leviathan-clearing
-Env file: leviathan-customer-mcp/.env
-```
-
-### OpenClaw Example
-
-```bash
-./install_agent.sh openclaw "YOUR_API_KEY" "YOUR_AGENT_ID" --openclaw-home "$HOME/.openclaw"
-```
-
-Manual OpenClaw paths:
-
-```text
-MCP config: ~/.openclaw/openclaw.json
-Skill folder: ~/.openclaw/workspace/skills/leviathan-clearing
-Env file: leviathan-customer-mcp/.env
-```
-
-### Other Agent Frameworks
-
-For any MCP-compatible framework:
-
-```text
-1. Add the `leviathan` MCP server config.
-2. Point `LEVIATHAN_ENV_FILE` to the local `.env`.
-3. Add `skill/leviathan-clearing/SKILL.md` to that framework's rules, skill, or instruction system.
-4. Restart the agent.
-5. Ask it to call Leviathan doctor or check connection status.
-```
-
-Do not upload or paste private keys, seed phrases, wallet files, wallet paths,
-exchange API secrets, local filesystem paths, or proprietary strategy code.
+When requesting access, include who you are, what agent workflow you want to
+guard, expected test volume, and whether you need evaluation, execution
+authorization, post-execution review, or clearing review.
 
 ## AEP Visual Story
 
@@ -537,6 +379,8 @@ See:
 - [Algorithm Notes](docs/algorithm-notes.md)
 - [Design Rationale](docs/design-rationale.md)
 - [Security Model](docs/security-model.md)
+- [Security And Privacy Boundary](docs/SECURITY_AND_PRIVACY.md)
+- [TechEx Submission Notes](docs/TECHEX_SUBMISSION.md)
 - [Hackathon Demo Guide](docs/hackathon-demo-guide.md)
 
 ## Quickstart
